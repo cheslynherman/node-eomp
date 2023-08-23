@@ -91,7 +91,7 @@ class Users {
       let token = createToken(user);
       res.cookie("LegitUser", token, {
         expires: new Date(Date.now() + 259200000),
-        httpOnly: true,
+        httpOnly: true, 
       });
       res.json({
         status: res.statusCode,

@@ -28,7 +28,7 @@ class Products{
           });
         });
       }
-
+// deleting products
       deleteProduct(req, res) {
         const query = `
             DELETE FROM products WHERE productID = ${req.params.id}

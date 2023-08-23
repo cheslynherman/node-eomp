@@ -1,12 +1,13 @@
 <template>
     <div v-if="product">
-        <img :src="product.imageURL" :alt="productName"/>
-        <h1>{{ product.productName }}</h1>
-        <p>{{ product.Price }}</p>
+        <h1>{{ product[0].productName }}</h1>
+        <img :src="product[0].imageURL" :alt="product[0].productName"/>
+        <p>{{ product[0].Price }}</p>
     </div>
     <div v-else>
         ouch
     </div>
+
 </template>
 
 <script>
@@ -18,7 +19,7 @@ export default {
         },
     },
     mounted() {
-        this.$store.dispatch("getProduct", this.productID);
+        this.$store.dispatch("getProduct", this.$route.params.id );
     }
 }
 </script>

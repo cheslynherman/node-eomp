@@ -5,6 +5,7 @@ export default createStore({
   state: {
     products: null,
     product: null,
+    users: null,
     user: null,
     asc: true
   },
@@ -24,6 +25,10 @@ export default createStore({
         state.products.reverse();
       }
       state.asc= !state.asc
+    },
+   
+    setUsers: (state, value) => {
+      state.users= value
     }
   },
   actions: {
@@ -39,10 +44,36 @@ export default createStore({
         context.commit("setProducts", products.results);
         
       } catch (error) {
-        context.commit('setSpinner', true);
+        context.commit(true);
         
       }
     },
+    getProduct: async (context, id) => {
+      try {
+        const res = await fetch (`${url}product/${id}` );
+        if(!res.ok) {
+          throw new Error ("Unable to fetch product");
+        }
+        const {result} = await res.json();
+        console.log(result)
+        context.commit("setProduct", result);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    getUsers: async (context) => {
+      try {
+        const res = await fetch (`${url}users`)
+        if (!res.ok) {
+          throw new Error ("Unable to fetch users");
+        }
+        const users = await res.json();
+        console.log (users.results)
+        context.commit ("setUsers", users.results);
+      } catch (error) {
+        context.commit(true);
+      }
+    }
     // getProduct: async (context, productID) => {
     //   try {
     //     const res = await fetch (`${url}product/:id`);
@@ -56,19 +87,19 @@ export default createStore({
     //     context.commit(true);
     //   }
     // }
-    getProduct: async (context, productID) => {
-      fetch (`${url}Product/:id`)
-      .then ((res) => res.json())
-      .then ((product) => {
-        let prod;
-        product.forEach (prod => {
-          if (prod.productID == productID) {
-            product = prod
-          }
-        });
-        context.commit("setProduct", product.results)
-      });
-    }
+    // getProduct: async (context, productID) => {
+    //   fetch (`${url}Product/:id`)
+    //   .then ((res) => res.json())
+    //   .then ((product) => {
+    //     let prod;
+    //     product.forEach (prod => {
+    //       if (prod.productID == productID) {
+    //         product = prod
+    //       }
+    //     });
+    //     context.commit("setProduct", product.results)
+    //   });
+    // }
   }
   
-})
+})  

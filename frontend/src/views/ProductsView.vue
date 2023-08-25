@@ -1,13 +1,7 @@
 <template>
     <h1 class="text-center">Products</h1>
-    <select v-model="categories" @change="filters">
-    <option value="All">All</option>
-    <option value="TOASTER">Toaster</option>
-    <option value="Kenwood">Kenwood</option>
-    <option value="SMEG">SMEG</option>
-    <option value="Russell Hobbs">Russell Hobbs</option>
-    <option value=""></option>
-    </select>
+    <input type="text" v-model="search" placeholder="search">
+   
     <button @click="sortByPrice" class="sort">Sort by Price</button>
     <button @click="sortByName" class="sort">Sort by Name</button>
 
@@ -23,6 +17,7 @@ import ProductCardComp from '@/components/ProductCard-comp.vue';
 export default {
     data() {
         return {
+            search: "",
             Categories: "All",
             
         };
@@ -31,11 +26,23 @@ export default {
         sortByPrice() {
             this.$store.commit("sortProducts");
         },
+        sortByName () {
+            this.$store.commit("sortByName");
+        }
        
     },
     computed: {
         Products() {
-            return this.$store.state.products
+            return this.$store.state.products?.filter((product)=> {
+                let isMatch = true;
+                if (!product.productName.toLowerCase().includes(this.search.toLowerCase())){
+                    isMatch = false;
+                }
+                if (this.Categories !== "All" && this.Categories !== product.Categories) {
+                    isMatch = false
+                }
+                return isMatch
+            })
         },
         
     },

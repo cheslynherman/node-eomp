@@ -29,7 +29,7 @@
             <td>{{ user.emailAdd }}</td>
             <td>{{ user.gender }}</td>
             <td>{{ user.age }}</td>
-            <td> <button>Delete</button></td>
+            <td> <button @click="delUser(user.userID)">Delete</button> </td>
           </tr>
         </tbody>
         <tbody v-else>
@@ -38,6 +38,7 @@
       </table>
     </div>
   </div>
+  
 
   <div class="productSection container-fluid">
     <h3>Products</h3>
@@ -68,7 +69,7 @@
                 <td>{{ product.Price }}</td>
                 <td>{{ product.Category }}</td>
                 <td><img :src="product.imageURL" :alt="product.productName"></td>
-                <td><button>Delete</button></td>
+                <td><button @click="delProduct(product.productID)">Delete</button> <EditProductComp/> </td>
             </tr>
         </tbody>
         <tbody v-else>sorry</tbody>
@@ -79,8 +80,9 @@
 
 <script>
 import AddUserComp from "@/components/AddUser-comp.vue"
-import AddProductComp from '@/components/AddProduct-comp.vue';
-
+import AddProductComp from '@/components/AddProduct-comp.vue'
+import EditProductComp from "@/components/EditProduct-comp.vue"
+import axios from "axios";
 export default {
   created() {
     this.$store.dispatch("getProducts"), this.$store.dispatch("getUsers");
@@ -93,10 +95,49 @@ export default {
       return this.$store.state.users;
     },
   },
+  methods: {
+    async delProduct(id) {
+        try {
+            await axios.delete(`https://eomp-backend-9rbd.onrender.com/Products/${id}`)
+            this.$store.dispatch("getProducts")
+            alert ("Product Removed")
+            window.location.reload();
+        }
+        catch (error) {
+            alert(error)
+        }
+    },
+    async delUser(id) {
+        try {
+            await axios.delete(`https://eomp-backend-9rbd.onrender.com/user/${id}`)
+            this.$store.dispatch ("getUsers")
+            alert ("This user has been removed")
+            window.location.reload();
+        }
+        catch (error) {
+            alert (error)
+        }
+    }
+  },
   components: {
     AddUserComp,
     AddProductComp,
-    
+    EditProductComp
   }
 };
 </script>
+
+
+<style scoped>
+img {
+    height: 70px;
+    width: 70px;
+}
+
+table {
+    width: 70vh;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+</style>

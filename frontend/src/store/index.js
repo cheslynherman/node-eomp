@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+
 const url = "https://eomp-backend-9rbd.onrender.com/"
 
 export default createStore({
@@ -7,7 +8,7 @@ export default createStore({
     product: null,
     users: null,
     user: null,
-    asc: true
+    asc: true,
   },
  
   mutations: {
@@ -25,6 +26,21 @@ export default createStore({
         state.products.reverse();
       }
       state.asc= !state.asc
+    },
+    sortByName: (state) => {
+      state.products.sort((a, b) => {
+        if (a.productName < b.productName) {
+          return -1;
+        }
+        if (a.productName > b.productName) {
+          return 1;
+        }
+        return 0;
+      });
+      if (!state.asc) {
+        state.products.reverse();
+      }
+      state.asc = !state.asc
     },
    
     setUsers: (state, value) => {

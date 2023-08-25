@@ -3,7 +3,7 @@ const path = require("path");
 const port = +process.env.PORT || 3000;
 const app = express();
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://appliance-cartel-node.web.app/");
+  res.header("Access-Control-Allow-Origin", "https://appliance-cartel-node.web.app");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "*");
   res.header("Access-Control-Request-Methods", "*");

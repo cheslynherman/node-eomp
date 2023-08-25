@@ -1,88 +1,152 @@
 <template>
-    <!-- Button trigger modal -->
-<button type="button" class="" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Add a Product
-</button>
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class=""
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+  >
+    Add a Product
+  </button>
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Product</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="inputs">
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Product</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            X
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="inputs">
             <label>Product Name</label>
-            <input type="text" v-model="productName" placeholder="Defy Toaster" /><br />
+            <input
+              type="text"
+              v-model="productName"
+              placeholder="Defy Toaster"
+            /><br />
           </div>
 
           <div class="inputs">
             <label>Quantity</label>
-            <input type="number" v-model="Quantity"/><br />
+            <input type="number" v-model="Quantity" placeholder="45" /><br />
           </div>
 
           <div class="inputs">
             <label>Price</label>
-            <input type="number" v-model="Price" placeholder="400"/><br />
+            <input type="number" v-model="Price" placeholder="400" /><br />
           </div>
 
           <div class="inputs">
             <label>Category</label>
-            <input type="text" v-model="Category"/><br />
+            <input type="text" v-model="Category" placeholder="Toaster" /><br />
           </div>
 
           <div class="inputs">
             <label>Image URL</label>
-            <input type="url" v-model="imageURL"/><br />
+            <input type="url" v-model="imageURL" /><br />
           </div>
-
-          
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Submit</button>
-        <button type="button" @click="addNewProd()">Submit</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" @click="addNewProd()">Submit</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-    data() {
-        return {
-            productName: "",
-            Quantity: "",
-            Price: "",
-            Category: "",
-            imageURL: "",
-        };
+  data() {
+    return {
+      productName: "",
+      Quantity: "",
+      Price: "",
+      Category: "",
+      imageURL: "",
+    };
+  },
+  methods: {
+    async addNewProd() {
+      try {
+        await axios.post("https://eomp-backend-9rbd.onrender.com/Product", {
+          productName: this.productName,
+          Quantity: this.Quantity,
+          Price: this.Price,
+          Category: this.Quantity,
+          imageURL: this.imageURL,
+        });
+        this.productName = "";
+        this.Quantity = "";
+        this.Price = "";
+        this.Category = "";
+        this.imageURL = "";
+        alert("Product Has Been Added");
+        window.location.reload();
+      } catch (error) {
+        alert(error);
+      }
     },
-    methods: {
-       async addNewProd() {
-        try {
-            await axios.post("https://eomp-backend-9rbd.onrender.com/Product", {
-                productName: this.productName,
-                Quantity: this.Quantity,
-                Price: this.Price,
-                Category: this.Quantity, 
-                imageURL: this.imageURL,
-            });
-            this.productName= "";
-            this.Quantity= "";
-            this.Price= "";
-            this.Category= "";
-            this.imageURL= "";
-            alert ("Product Has Been Added")
-            window.location.reload();
-        }   catch (error) {
-            alert (error);
-        }
-       } 
-    }
-    
-}
+  },
+};
 </script>
+
+<style scoped>
+button {
+  background: #ce1212;
+  color: #eeebdd;
+  border: 2px solid #ce1212;
+  width: 120px;
+  border-radius: 30px;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  color: #eeebdd;
+  background: #ce1212;
+  box-shadow: 0 0 30px 5px #ce1212;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.modal-content {
+  background: #1b1717 !important;
+  color: #eeebdd !important;
+  display: block;
+}
+
+input {
+  color: #eeebdd !important;
+  border: 2px solid #ce1212;
+  background: #ce1212 !important;
+  border-radius: 20px;
+  margin: 15px;
+  width: 60%;
+}
+
+::placeholder {
+    color: #eeebdd;
+}
+</style>

@@ -26,7 +26,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-          ></button>
+          >X</button>
         </div>
         <div class="modal-body">
           <div class="inputs">
@@ -64,13 +64,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
+          
           <button type="button" @click="addNewUser()">Submit</button>
         </div>
       </div>
@@ -110,7 +104,7 @@ export default {
         this.age = "";
         this.userPass = "";
         this.$router.push("/admin");
-        alert ("User Has Successfully Been Added")
+        alert("User Has Successfully Been Added");
         window.location.reload();
       } catch (error) {
         alert(error);
@@ -120,4 +114,47 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+button {
+  background: #ce1212;
+  color: #eeebdd;
+  border: 2px solid #ce1212;
+  width: 120px;
+  border-radius: 30px;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  color: #eeebdd;
+  background: #ce1212;
+  box-shadow: 0 0 30px 5px #ce1212;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.modal-content {
+    background: #1B1717 !important;
+    color: #EEEBDD !important;
+    display: block;
+}
+
+input {
+    color: #eeebdd !important;
+  border: 2px solid #ce1212;
+  background: #ce1212 !important;
+  border-radius: 20px;
+  margin: 15px;
+  width: 60%;
+  
+}
+
+::placeholder {
+    color: #eeebdd;
+}
+</style>

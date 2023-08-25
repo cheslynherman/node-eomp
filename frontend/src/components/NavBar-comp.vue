@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/"
           ><img
@@ -43,6 +43,7 @@
   nav {
     background-color: #1B1717 !important;
     margin-bottom: 20px;
+    
   }
   .navImage {
     height: 60px;

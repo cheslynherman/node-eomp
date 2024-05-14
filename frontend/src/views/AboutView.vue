@@ -4,7 +4,7 @@
   </div>
   <div class="container-fluid text-center">
     <img
-      src="https://i.postimg.cc/qvTb7WkY/IMG-1785.jpg"
+      src="https://i.ibb.co/8bCsMR4/ches.png"
       alt="Cheslyn Herman"
       class="aboutImg img-fluid"
     />

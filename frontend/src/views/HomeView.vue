@@ -16,9 +16,9 @@
     <div>
       <div class="card">
         <img
-          src="https://i.postimg.cc/tTnsV8Y3/nespresso-vertuo.jpg"
+          src="https://i.ibb.co/G3R9GCY/ket.png"
           class="card-img-top"
-          alt="Nespresso Vertuo Red"
+          alt="Nespresso Vertuo Aqua"
         />
         <div class="card-body">
           <h5 class="card-title">Nespresso Vertuo Aqua</h5>
@@ -34,7 +34,7 @@
     <div class="products">
       <div class="card">
         <img
-          src="https://i.postimg.cc/NjQ2PNzt/smeg-kettle.jpg"
+          src="https://i.ibb.co/3SCKy2X/Capture1.png"
           class="card-img-top"
           alt="Smeg Kettle"
         />
@@ -46,7 +46,7 @@
       </div>
       <div class="card">
         <img
-          src="https://i.postimg.cc/26W55vKT/Russel-hop-kettle.jpg"
+          src="https://i.ibb.co/QQ1W1cf/52756463-1-zoom.jpg"
           class="card-img-top"
           alt="Russel Hobbs Glass Kettle"
         />
@@ -58,7 +58,7 @@
       </div>
       <div class="card">
         <img
-          src="https://i.postimg.cc/qvBgGNNM/milex-kettle.jpg"
+          src="https://i.ibb.co/x1DQQGQ/kettle.png"
           class="card-img-top"
           alt="Milex Kettle"
         />

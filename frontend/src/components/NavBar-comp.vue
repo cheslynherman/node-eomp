@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/"
           ><img
-            src="https://i.postimg.cc/NMcMDYy1/Typography-Initial-Letter-Brand-Logo.png"
+            src="https://i.ibb.co/f1qqBzd/logo.png"
             alt="Logo"
             class="navImage"
         /></router-link>
